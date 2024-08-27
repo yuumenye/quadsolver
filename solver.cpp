@@ -1,7 +1,9 @@
+#include <string.h>
+#include <math.h>
 #include <assert.h>
-#include "main.h"
-#include "math.h"
 #include "solver.h"
+#include "io.h"
+#include "main.h"
 #include "compare.h"
 
 NumberOfRoots SolveSquare(double a, double b, double c, double *x1, double *x2)
@@ -54,4 +56,23 @@ NumberOfRoots SolveLinear(double h, double k, double *x)
         return ONE;
     }
     return NONE;
+}
+
+int SolveFromLine(const char **argv, struct Options *userOptions)
+{
+    double a = 0, b = 0, c = 0;
+    double x1 = 0, x2 = 0;
+    int lp = userOptions->linePos;
+
+    if (sscanf(argv[++lp], "%lg", &a) != 1)
+        return FAIL;
+    if (sscanf(argv[++lp], "%lg", &b) != 1)
+        return FAIL;
+    if (sscanf(argv[++lp], "%lg", &c) != 1)
+        return FAIL;
+    NumberOfRoots nRoots = SolveSquare(a, b, c, &x1, &x2);
+
+    if (PrintSolutions(nRoots, x1, x2) == FAIL)
+        return FAIL;
+    return SUCCESS;
 }

@@ -33,4 +33,6 @@ NumberOfRoots SolveSquare(double a, double b, double c, double *x1, double *x2);
  *  \return Number of roots.
  */
 NumberOfRoots SolveLinear(double h, double k, double *x);
+
+int SolveFromLine(const char **argv, struct Options *userOptions);
 #endif

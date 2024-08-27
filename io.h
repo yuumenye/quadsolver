@@ -4,6 +4,7 @@
 #ifndef IO_H
 #define IO_H
 #include <stdio.h>
+#include "solver.h"
 /** \brief Print solutions.
  *  \param[in] nRoots Number of roots.
  *  \param[in] x1 First solution.
@@ -25,4 +26,9 @@ int GetInput(double *a, double *b, double *c);
  *  Clear input. Abort the program if EOF is encountered.
  */
 int ClearInput(FILE *inStream = stdin);
+
+int GetOptions(const int argc, const char **argv, struct Options *userOptions);
+int GetShortOptions(const char **argv, int *nArg, struct Options *userOptions);
+void PrintHelp(void);
+
 #endif
